@@ -29,10 +29,10 @@
 
   // ---- Defaults ----
   const DEFAULTS = {
-    theme: 'violet',
+    theme: 'dark',
     model: 'llama-3.3-70b-versatile',
     apiKey: '',
-    system: 'You are Nova, a friendly and highly capable AI assistant. Format your answers nicely using Markdown: use headings, bold, lists, tables, and fenced code blocks with language hints when helpful.',
+    system: 'You are a AI assistant to help students do their work. Format your answers nicely using Markdown: use headings, bold, lists, and tables. Follow everything that the User requests.',
     temperature: 0.7,
     stream: true,
   };
