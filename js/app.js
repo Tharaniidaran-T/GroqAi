@@ -13,13 +13,13 @@
 
   // ---- Available models ----
   const MODELS = [
-    { id: 'llama-3.3-70b-versatile',          label: 'llama-3.3-70b',  note: 'Smartest' },
-    { id: 'llama-3.1-8b-instant',             label: 'llama-3.1-8b',   note: 'Fastest' },
-    { id: 'meta-llama/llama-4-scout-17b-16e-instruct', label: 'llama-4-scout', note: 'Vision' },
-    { id: 'meta-llama/llama-4-maverick-17b-128e-instruct', label: 'llama-4-maverick', note: 'Vision' },
-    { id: 'openai/gpt-oss-120b',              label: 'gpt-oss-120b',   note: 'Reasoning' },
-    { id: 'qwen/qwen3-32b',                   label: 'qwen3-32b',      note: 'Balanced' },
-    { id: 'gemma2-9b-it',                     label: 'gemma2-9b',      note: 'Light' },
+    { id: 'llama-3.3-70b-versatile',          label: 'llama-3.3-70b',  note: 'Smartest, similar to gpt 4o.' },
+    { id: 'llama-3.1-8b-instant',             label: 'llama-3.1-8b',   note: 'Fastest, self-explanatory' },
+    { id: 'meta-llama/llama-4-scout-17b-16e-instruct', label: 'llama-4-scout', note: 'Undestands images, analyzes massive amounts of data better' },
+    { id: 'meta-llama/llama-4-maverick-17b-128e-instruct', label: 'llama-4-maverick', note: 'Undestands images, analyzes complex data better.' },
+    { id: 'openai/gpt-oss-120b',              label: 'gpt-oss-120b (Chatgpt)',   note: 'Reasoning engine built for speed, code, and agentic workflows.' },
+    { id: 'qwen/qwen3-32b',                   label: 'qwen3-32b',      note: 'Balanced, Deep logical reasoning meets human-like creative writing—all wrapped into one efficient model.' },
+    { id: 'gemma2-9b-it',                     label: 'gemma2-9b',      note: 'Light, means fast. Good for math.' },
   ];
 
   const VISION_MODELS = new Set([
