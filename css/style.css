@@ -213,19 +213,45 @@ body::before {
   background: linear-gradient(135deg, rgba(var(--accent-rgb),0.3), rgba(var(--accent-rgb),0.1));
   z-index: 1;
 }
-/* Icon sits above the rings */
+
+/* ---- Font Awesome icon (legacy) ---- */
 .brand-logo i {
   position: relative; z-index: 2;
   font-size: 14px; color: var(--accent);
   filter: drop-shadow(0 0 4px rgba(var(--accent-rgb),0.8));
   animation: logoBreathe 3s ease-in-out infinite;
 }
-.brand-logo-glow { display: none; } /* replaced by ::before conic */
+
+/* ---- Gemini SVG star icon (header) ---- */
+.brand-logo .gemini-logo-svg {
+  position: relative;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  animation: logoSpin 6s cubic-bezier(0.65, 0, 0.35, 1) infinite,
+             logoBreathe 3s ease-in-out infinite;
+  transform-origin: center;
+  filter: drop-shadow(0 0 4px rgba(var(--accent-rgb), 0.6));
+}
+.brand-logo .gemini-logo-svg path {
+  fill: url(#geminiGradHeader);
+}
+
+.brand-logo-glow { display: none; }
 
 @keyframes containerIn { from{opacity:0;transform:rotate(-90deg) scale(0.3);} to{opacity:1;transform:rotate(0) scale(1);} }
 @keyframes containerPulse { 0%,100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),0);} 50%{box-shadow:0 0 20px 2px rgba(var(--accent-rgb),0.35);} }
 @keyframes conicSpin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
 @keyframes logoBreathe { 0%,100%{filter:drop-shadow(0 0 3px rgba(var(--accent-rgb),0.5)) brightness(1);} 50%{filter:drop-shadow(0 0 10px rgba(var(--accent-rgb),0.9)) brightness(1.4);} }
+
+/* ---- Logo spin (for SVG star rotation) ---- */
+@keyframes logoSpin {
+  0%   { transform: rotate(0deg); }
+  40%  { transform: rotate(180deg); }
+  50%  { transform: rotate(180deg); }
+  90%  { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
 
 .brand-text {
   display: flex; flex-direction: column; line-height: 1.1;
@@ -359,7 +385,6 @@ body::before {
   animation: welcomePop 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.2s both,
              welcomeFloat 5s ease-in-out infinite 1s,
              welcomeGlow 4s ease-in-out infinite 1s;
-  font-size: 0; /* hide FA icon — replaced by conic animation */
 }
 /* Conic ring on hero icon */
 .hero-icon-card::before {
@@ -380,12 +405,29 @@ body::before {
   background: linear-gradient(135deg, rgba(var(--accent-rgb),0.22), rgba(var(--accent-rgb),0.06));
   backdrop-filter: blur(10px); z-index: 1;
 }
+
+/* ---- Font Awesome icon (legacy, hero) ---- */
 .hero-icon-card i {
   position: relative; z-index: 2;
   font-size: 30px; color: var(--accent);
   filter: drop-shadow(0 0 8px rgba(var(--accent-rgb),0.8));
   animation: logoBreathe 3.5s ease-in-out infinite;
 }
+
+/* ---- Gemini SVG star icon (large, hero/welcome) ---- */
+.hero-icon-card .gemini-logo-svg-large {
+  position: relative;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  animation: logoSpinLarge 8s cubic-bezier(0.65, 0, 0.35, 1) infinite,
+             logoBreatheLarge 3.5s ease-in-out infinite;
+  transform-origin: center;
+}
+.hero-icon-card .gemini-logo-svg-large path {
+  fill: url(#geminiGradWelcome);
+}
+
 .hero-icon-glow {
   position: absolute; inset: -22px; border-radius: 40px;
   background: var(--accent-glow); filter: blur(34px);
@@ -393,12 +435,7 @@ body::before {
   animation: pulse 3.5s ease-in-out infinite;
 }
 
-@keyframes welcomePop { from{opacity:0;transform:scale(0.3) rotate(-25deg);} to{opacity:1;transform:scale(1) rotate(0);} }
-@keyframes welcomeFloat { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-8px) scale(1.03);} }
-@keyframes welcomeGlow { 0%,100%{box-shadow:0 0 20px rgba(var(--accent-rgb),0.15),0 0 40px rgba(var(--accent-rgb),0.08);} 50%{box-shadow:0 0 30px rgba(var(--accent-rgb),0.45),0 0 60px rgba(var(--accent-rgb),0.2);} }
-@keyframes conicSpinLarge { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
-
-/* Sparkle particles on hero icon */
+/* ---- Sparkle particles (::before/::after kept for fallback) ---- */
 .hero-icon::before,
 .hero-icon::after {
   content: '';
@@ -410,8 +447,46 @@ body::before {
 }
 .hero-icon::before { top: 10%; left: 10%; animation: sparkle1 3s ease-in-out infinite; }
 .hero-icon::after  { bottom: 15%; right: 8%; animation: sparkle2 3.5s ease-in-out infinite 0.5s; }
-@keyframes sparkle1 { 0%,100%{opacity:0;transform:scale(0) translate(0,0);} 50%{opacity:1;transform:scale(1.5) translate(-8px,-8px);} }
-@keyframes sparkle2 { 0%,100%{opacity:0;transform:scale(0) translate(0,0);} 50%{opacity:1;transform:scale(1.2) translate(8px,-6px);} }
+
+/* ---- Sparkle particle elements (p1–p4, matching first code) ---- */
+.sparkle-particle {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: background 0.5s;
+}
+.sparkle-particle.p1 { top: 10%; left: 15%; animation: sparkle1 3s ease-in-out infinite; }
+.sparkle-particle.p2 { top: 20%; right: 10%; animation: sparkle2 3.5s ease-in-out infinite 0.5s; }
+.sparkle-particle.p3 { bottom: 15%; left: 20%; animation: sparkle3 4s ease-in-out infinite 1s; }
+.sparkle-particle.p4 { bottom: 20%; right: 18%; animation: sparkle4 3.2s ease-in-out infinite 1.5s; }
+
+@keyframes welcomePop { from{opacity:0;transform:scale(0.3) rotate(-25deg);} to{opacity:1;transform:scale(1) rotate(0);} }
+@keyframes welcomeFloat { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-8px) scale(1.03);} }
+@keyframes welcomeGlow { 0%,100%{box-shadow:0 0 20px rgba(var(--accent-rgb),0.15),0 0 40px rgba(var(--accent-rgb),0.08);} 50%{box-shadow:0 0 30px rgba(var(--accent-rgb),0.45),0 0 60px rgba(var(--accent-rgb),0.2);} }
+@keyframes conicSpinLarge { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+
+/* ---- Large logo spin (hero SVG) ---- */
+@keyframes logoSpinLarge {
+  0%   { transform: rotate(0deg) scale(1); }
+  45%  { transform: rotate(180deg) scale(1.1); }
+  55%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ---- Large logo breathe (hero SVG, dual glow) ---- */
+@keyframes logoBreatheLarge {
+  0%,100% {
+    filter: drop-shadow(0 0 6px rgba(var(--accent-rgb),0.5)) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(var(--accent-rgb),0.95))
+            drop-shadow(0 0 30px rgba(244,114,182,0.4)) brightness(1.3);
+  }
+}
 
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
@@ -478,7 +553,6 @@ body::before {
   background: linear-gradient(135deg, rgba(var(--accent-rgb),0.3), rgba(var(--accent-rgb),0.1));
   border: 1px solid rgba(var(--accent-rgb),0.3);
   color: var(--accent);
-  /* Mini conic ring */
   position: relative; overflow: hidden;
 }
 .msg.ai .msg-avatar::before {
@@ -495,6 +569,17 @@ body::before {
   z-index: 1;
 }
 .msg.ai .msg-avatar i { position: relative; z-index: 2; }
+
+/* ---- Gemini SVG in chat avatar ---- */
+.msg.ai .msg-avatar .gemini-logo-svg {
+  position: relative;
+  z-index: 2;
+  width: 16px; height: 16px;
+  animation: logoSpin 6s cubic-bezier(0.65, 0, 0.35, 1) infinite,
+             logoBreathe 3s ease-in-out infinite;
+  transform-origin: center;
+}
+.msg.ai .msg-avatar .gemini-logo-svg path { fill: url(#geminiGradHeader); }
 
 .msg-body { flex: 1; min-width: 0; padding-top: 2px; max-width: 82%; }
 .msg.user .msg-body { align-items: flex-end; }
@@ -818,12 +903,29 @@ body::before {
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast[hidden] { display: none; }
 
-/* ============ KEYFRAMES ============ */
+/* ============ KEYFRAMES (full set) ============ */
 @keyframes fadeIn  { from { opacity: 0; } }
 @keyframes fadeUp  { from { opacity: 0; transform: translateY(14px); } }
 @keyframes msgIn   { from { opacity: 0; transform: translateY(10px) scale(0.97); } }
 @keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(.96); } }
 @keyframes pop     { from { opacity: 0; transform: scale(.6); } }
+
+@keyframes sparkle1 {
+  0%,100% { opacity:0; transform:scale(0) translate(0,0); }
+  50%     { opacity:1; transform:scale(1.5) translate(-8px,-8px); }
+}
+@keyframes sparkle2 {
+  0%,100% { opacity:0; transform:scale(0) translate(0,0); }
+  50%     { opacity:1; transform:scale(1.2) translate(8px,-6px); }
+}
+@keyframes sparkle3 {
+  0%,100% { opacity:0; transform:scale(0) translate(0,0); }
+  50%     { opacity:1; transform:scale(1.4) translate(-6px,8px); }
+}
+@keyframes sparkle4 {
+  0%,100% { opacity:0; transform:scale(0) translate(0,0); }
+  50%     { opacity:1; transform:scale(1.3) translate(8px,6px); }
+}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 640px) {
