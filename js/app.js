@@ -13,13 +13,13 @@
 
   // ---- Available models ----
   const MODELS = [
-    { id: 'llama-3.3-70b-versatile',          label: 'llama-3.3-70b',  note: 'Smartest, similar to gpt 4o.' },
-    { id: 'llama-3.1-8b-instant',             label: 'llama-3.1-8b',   note: 'Fastest, self-explanatory' },
-    { id: 'meta-llama/llama-4-scout-17b-16e-instruct', label: 'llama-4-scout', note: 'Undestands images, analyzes massive amounts of data better' },
-    { id: 'meta-llama/llama-4-maverick-17b-128e-instruct', label: 'llama-4-maverick', note: 'Undestands images, analyzes complex data better.' },
-    { id: 'openai/gpt-oss-120b',              label: 'gpt-oss-120b (Chatgpt)',   note: 'Reasoning engine built for speed, code, and agentic workflows.' },
-    { id: 'qwen/qwen3-32b',                   label: 'qwen3-32b',      note: 'Balanced, Deep logical reasoning, so creative writing.' },
-    { id: 'gemma2-9b-it',                     label: 'gemma2-9b',      note: 'Light, means fast. Good for math.' },
+    { id: 'llama-3.3-70b-versatile',          label: 'llama-3.3-70b',  note: 'Smartest' },
+    { id: 'llama-3.1-8b-instant',             label: 'llama-3.1-8b',   note: 'Fastest' },
+    { id: 'meta-llama/llama-4-scout-17b-16e-instruct', label: 'llama-4-scout', note: 'Vision' },
+    { id: 'meta-llama/llama-4-maverick-17b-128e-instruct', label: 'llama-4-maverick', note: 'Vision' },
+    { id: 'openai/gpt-oss-120b',              label: 'gpt-oss-120b',   note: 'Reasoning' },
+    { id: 'qwen/qwen3-32b',                   label: 'qwen3-32b',      note: 'Balanced' },
+    { id: 'gemma2-9b-it',                     label: 'gemma2-9b',      note: 'Light' },
   ];
 
   const VISION_MODELS = new Set([
@@ -29,10 +29,10 @@
 
   // ---- Defaults ----
   const DEFAULTS = {
-    theme: 'dark',
+    theme: 'violet',
     model: 'llama-3.3-70b-versatile',
     apiKey: '',
-    system: 'You are a AI assistant to help students do their work. Format your answers nicely using Markdown: use headings, bold, lists, and tables. Follow everything that the User requests.',
+    system: 'You are Nova, a friendly and highly capable AI assistant. Format your answers nicely using Markdown: use headings, bold, lists, tables, and fenced code blocks with language hints when helpful.',
     temperature: 0.7,
     stream: true,
   };
