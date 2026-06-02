@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nova AI — Powered by Groq</title>
+  <link rel="icon" type="image/png" href="https://ssl.gstatic.com/classroom/favicon.png">
+  <title>Home - Classroom</title>
   <meta name="description" content="A beautiful, animated AI chat app powered by Groq. Choose your own color palette." />
 
   <!-- Fonts -->
@@ -23,6 +24,32 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+<!-- ============ SVG GRADIENT DEFS (Gemini animated fills) ============ -->
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="geminiGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--accent)">
+        <animate attributeName="stop-color" values="#6366f1;#a78bfa;#ec4899;#6366f1" dur="6s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="var(--accent-2)">
+        <animate attributeName="stop-color" values="#ec4899;#6366f1;#a78bfa;#ec4899" dur="6s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    <linearGradient id="geminiGradWelcome" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--accent)">
+        <animate attributeName="stop-color" values="#6366f1;#a78bfa;#ec4899;#f6c177;#6366f1" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" stop-color="var(--accent-2)">
+        <animate attributeName="stop-color" values="#a78bfa;#ec4899;#6366f1;#a78bfa" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="var(--accent-2)">
+        <animate attributeName="stop-color" values="#ec4899;#6366f1;#a78bfa;#ec4899" dur="8s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+  </defs>
+</svg>
+
   <!-- Atmospheric background blurs -->
   <div class="bg-orbs" aria-hidden="true">
     <span class="orb orb-1"></span>
@@ -35,10 +62,13 @@
     <a class="brand" href="#" aria-label="Nova AI home">
       <span class="brand-logo">
         <span class="brand-logo-glow"></span>
-        <i class="fa-solid fa-star"></i>
+        <!-- Gemini star SVG (replaces fa-star) -->
+        <svg class="gemini-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0 C12 6 13 11 24 12 C13 13 12 18 12 24 C12 18 11 13 0 12 C11 11 12 6 12 0 Z"/>
+        </svg>
       </span>
       <span class="brand-text">
-        <strong>NOVA AI</strong>
+        <strong>TTM AI</strong>
         <small>POWERED BY GROQ</small>
       </span>
     </a>
@@ -77,10 +107,20 @@
     <section class="hero" id="hero">
       <div class="hero-icon">
         <span class="hero-icon-glow"></span>
-        <span class="hero-icon-card"><i class="fa-solid fa-star"></i></span>
+        <span class="hero-icon-card">
+          <!-- Sparkle particles -->
+          <span class="sparkle-particle p1"></span>
+          <span class="sparkle-particle p2"></span>
+          <span class="sparkle-particle p3"></span>
+          <span class="sparkle-particle p4"></span>
+          <!-- Gemini large star SVG (replaces fa-star) -->
+          <svg class="gemini-logo-svg-large" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0 C12 6 13 11 24 12 C13 13 12 18 12 24 C12 18 11 13 0 12 C11 11 12 6 12 0 Z"/>
+          </svg>
+        </span>
       </div>
       <h1 class="hero-title">WHAT CAN I HELP WITH?</h1>
-      <p class="hero-sub">Made by TM — ask anything, paste images too.</p>
+      <p class="hero-sub">Made by TM — ask anything, paste images too. Go to groq.com to make get a API. To save it put it into the big doc we made.</p>
       <div class="chips" id="chips">
         <button class="chip" data-prompt="Explain quantum computing in simple terms.">Explain quantum computing</button>
         <button class="chip" data-prompt="Write me a short poem about the night sky.">Write me a poem</button>
